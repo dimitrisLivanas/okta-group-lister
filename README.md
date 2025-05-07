@@ -7,8 +7,8 @@ A command-line tool to list and manage groups and their members in your Okta org
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/your-repository-name.git
-    cd your-repository-name
+    git clone https://github.com/dimitrisLivanas/okta-group-lister.git
+    cd okta-group-lister
     ```
 
 2.  **Create and activate a virtual environment (recommended):**
@@ -119,10 +119,6 @@ Contributions are welcome!
 3.  Make your changes and commit them.
 4.  Push your changes to your fork.
 5.  Submit a pull request.
-
-## License
-
-[Specify your license here, e.g., e.g., MIT License]
 
 ## Author
 
