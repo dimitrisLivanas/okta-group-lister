@@ -61,10 +61,6 @@ Contributions are welcome! Please follow these steps:
 
 Please ensure your code adheres to any existing style guidelines and includes appropriate tests.
 
-## License
-
-[Specify your license here, e.g., MIT License]
-
 ## Authors
 
 * Dimitris Livanas/dimitrisLivanas
