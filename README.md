@@ -6,7 +6,7 @@ A command-line tool to list groups in your Okta organization in a convenient, fo
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/dimitrisLivanas/okta-group-lister.git](https://github.com/dimitrisLivanas/okta-group-lister.git)
+    git clone https://github.com/dimitrisLivanas/okta-group-lister.git
     cd okta-group-lister
     ```
 2.  **Create and activate a virtual environment (recommended):**
