@@ -1,125 +1,115 @@
-# Okta Group Lister CLI
+# Okta Group Lister
 
-A command-line tool to list and manage groups and their members in your Okta organization.
+A command-line tool for listing and managing Okta groups and their members. This tool provides functionality to search for groups, list group members, and export member information in various formats.
+
+## Features
+
+- Search for Okta groups by name
+- List members of specific groups
+- Export group members to CSV, JSON, or Excel format
+- Colorized output for better readability
+- Pagination support for large groups
+- Rate limiting handling
+- Comprehensive error handling and logging
 
 ## Installation
 
-1.  **Clone the repository:**
+### Option 1: Direct Installation
 
+1. Clone this repository:
     ```bash
-    git clone https://github.com/dimitrisLivanas/okta-group-lister.git
+    git clone https://github.com/yourusername/okta-group-lister.git
     cd okta-group-lister
     ```
 
-2.  **Create and activate a virtual environment (recommended):**
-
+2. Install the required dependencies:
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On macOS/Linux
-    # venv\Scripts\activate  # On Windows
+    pip install -r requirements.txt
     ```
 
-3.  **Install the required dependencies:**
+### Option 2: Using Docker
 
+1. Build the Docker image:
     ```bash
-    pip install requests tabulate
+    docker build -t okta-group-lister .
     ```
+
+2. Run the container:
+    ```bash
+    docker run -it --rm \
+        -e OKTA_DOMAIN=your-okta-domain \
+        -e OKTA_API_TOKEN=your-okta-api-token \
+        -v $HOME:/home/user \
+        okta-group-lister [options]
+    ```
+
+## Configuration
+
+Set up your Okta API credentials as environment variables:
+
+```bash
+export OKTA_DOMAIN="your-okta-domain"
+export OKTA_API_TOKEN="your-okta-api-token"
+```
 
 ## Usage
 
-1.  **Set the `OKTA_DOMAIN` and `OKTA_API_TOKEN` environment variables.**
+### List All Groups
+```bash
+python okta_group_lister.py
+```
 
-    * **macOS/Linux:**
+### Search for Groups
+```bash
+python okta_group_lister.py --search "group-name"
+```
 
-        ```bash
-        export OKTA_DOMAIN="your-okta-domain.com"
-        export OKTA_API_TOKEN="your-api-token"
-        ```
+### List Group Members
+```bash
+python okta_group_lister.py --members "group-name-or-id"
+```
 
-    * **Windows (Command Prompt):**
+### Export Group Members
+```bash
+# Export to CSV (default)
+python okta_group_lister.py --export "group-name-or-id"
 
-        ```bash
-        set OKTA_DOMAIN=your-okta-domain.com
-        set OKTA_API_TOKEN=your-api-token
-        ```
+# Export to JSON
+python okta_group_lister.py --export "group-name-or-id" --format json
 
-    * **Windows (PowerShell):**
+# Export to Excel
+python okta_group_lister.py --export "group-name-or-id" --format excel
+```
 
-        ```powershell
-        $env:OKTA_DOMAIN = "your-okta-domain.com"
-        $env:OKTA_API_TOKEN = "your-api-token"
-        ```
+### Enable Verbose Output
+```bash
+python okta_group_lister.py --verbose
+```
 
-2.  **Run the script:**
+## Output Formats
 
-    * **List all groups:**
+The tool supports three export formats:
+- CSV (default): Comma-separated values
+- JSON: JavaScript Object Notation
+- Excel: Microsoft Excel spreadsheet
 
-        ```bash
-        python3 okta_group_lister.py
-        ```
+## Logging
 
-        Displays a table of all groups in your Okta organization.
+The tool creates a log file in the current directory with the format `okta_group_lister_YYYYMMDD.log`. This file contains detailed information about API calls, errors, and other important events.
 
-    * **Search for groups by name:**
+## Error Handling
 
-        ```bash
-        python3 okta_group_lister.py --search "search_term"
-        ```
-
-        Displays groups whose names contain the specified `"search_term"` (case-insensitive). For example:
-
-        ```bash
-        python3 okta_group_lister.py --search "team"
-        ```
-
-    * **List members of a group:**
-
-        ```bash
-        python3 okta_group_lister.py --members "group_name_or_id"
-        ```
-
-        Displays the members of a group. Specify the `"group_name_or_id"` either by its name or ID. If multiple groups share the same name, you **must** use the Group ID. For example:
-
-        ```bash
-        python3 okta_group_lister.py --members "My Group"
-        python3 okta_group_lister.py --members "00g1a2b3c4d5Efg6h7i8"  # Replace with actual Group ID
-        ```
-
-    * **Export group members to a CSV file:**
-
-        ```bash
-        python3 okta_group_lister.py --export "group_name_or_id"
-        ```
-
-        Exports the members of a group to a CSV file in your home directory. Specify the `"group_name_or_id"` either by its name or ID. If multiple groups share the same name, you **must** use the Group ID. The file will be saved as `GROUP_NAME_members.csv` (where `GROUP_NAME` is the sanitized group name). For example:
-
-        ```bash
-        python3 okta_group_lister.py --export "My Group"
-        python3 okta_group_lister.py --export "00g1a2b3c4d5Efg6h7i8"  # Replace with actual Group ID
-        ```
-
-## Dependencies
-
-* Python 3.x
-* `requests`
-* `tabulate`
-
-    Install the required packages using pip:
-
-    ```bash
-    pip install requests tabulate
-    ```
+The tool includes comprehensive error handling for:
+- API errors
+- Rate limiting
+- Network issues
+- Invalid responses
+- File system errors
 
 ## Contributing
 
-Contributions are welcome!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1.  Fork the repository.
-2.  Create a new branch.
-3.  Make your changes and commit them.
-4.  Push your changes to your fork.
-5.  Submit a pull request.
+## License
 
-## Author
-
-* Dimitris Livanas / dimitrisLivanas
+This project is licensed under the MIT License - see the LICENSE file for details.
